@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      
+    <title>PASTEL PARALLAX</title>
+      
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+	<style>
+
+		body {
+		  height: 3000px;
+		  background: linear-gradient(45deg, #f7b4f5 0%,#99e9f7 100%);
+		}
+		
+		#bubble1, #bubble2 {
+		  position: fixed;
+		  height: 150px;
+		  width: 150px;
+		  border-radius: 50%;
+		  margin-left: 10%;
+		  top: 300px;
+		  background-color: #f9d9ff;
+		  border: 1px solid #FFDBFB;
+		}
+
+		#bubble2 {
+		  margin-left: 60%;
+		  top: 700px;
+		  background-color: #BDFFEA;
+		  border-color: #BDFFEA;
+		}
+
+		h2 {
+		  position: fixed;
+		  font-size: 2em;
+		  font-family: "press start 2p", sans-serif;
+		  text-align: center;
+		  left: 0;
+		  right: 0;
+		  margin-top: 20px;
+		  color: white;
+		  z-index: 1;
+		}
+
+	</style>
+      
+  </head>
+  <body>
+	  
+      <H2>Pastel Parallax</H2>
+      <div id="bubble1"></div>
+      <div id="bubble2"></div>
+      
+ 
+    
+      
+      <script>
+		  
+          // Create cross browser requestAnimationFrame method:
+		  window.requestAnimationFrame = window.requestAnimationFrame
+		   || window.mozRequestAnimationFrame
+		   || window.webkitRequestAnimationFrame
+		   || window.msRequestAnimationFrame
+		   || function(f){setTimeout(f, 1000/60)} //fall back method, run roughly 60 times per second
+		  
+          
+		  // define variables
+		  const bubble1 = document.getElementById('bubble1');
+		  const bubble2 = document.getElementById('bubble2');
+		  let bubble1top = parseInt($('#bubble1').css('top'));
+		  let bubble2top = parseInt($('#bubble2').css('top'));
+
+          // create function to move elements
+          function parallaxBubbles() {
+              let scrollTop = window.pageYOffset // get number of pixels the document has been scrolled vertically
+              bubble1.style.top = bubble1top - scrollTop * .2 + 'px';
+              bubble2.style.top = bubble2top - scrollTop * .7 + 'px';
+          }
+          
+          //tell javascript that if 'scroll' happens in this window, then do this function
+          window.addEventListener('scroll', function() { 
+              requestAnimationFrame(parallaxBubbles); //call our parallax function on next available screen paint
+          }, false);
+      
+      </script>
+
+   
+    
+  </body>
+</html>
